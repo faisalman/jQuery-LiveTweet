@@ -19,3 +19,15 @@ $(document).ready(function() {
 </script>
 </pre>
 </code>
+
+h2. Options
+
+*username*: Your twitter username. Defaults to "jeresig" (jQuery's creator).
+*limit*: Number of tweets returned. Defaults to 5.
+*timeout*: Request timeout. Defaults to 2000 (2 seconds).
+*html_before*: HTML to be rendered before tweets' loop. Defaults to "<ul>".
+*html_after*: HTML to be rendered after tweets' loop. Defaults to "</ul>".
+*html_tweets*: HTML pattern for tweets. Defaults to "<li>{text}<br>{date}</li>".
+*format_date*: Date formatting function. Defaults to a function I made for Italian dates.
+*before*: Function executed just before sending the ajax request. Defaults to an appended string that says "Loading".
+*error*: Function executed on errors.
