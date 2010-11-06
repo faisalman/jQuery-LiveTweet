@@ -1,4 +1,4 @@
-/* 	
+/* 
 JQUERY LIVETWEET 0.1
 by Sergio Martino
 http://www.dailygrind.it/livetweet
@@ -19,7 +19,7 @@ http://www.dailygrind.it/livetweet
 			t.html("<span class=\"livetweet-loading\">loading...</span>");
 		},
 		'error' : function(t) {
-			t.html("Si è verificato un errore!");
+			t.html("Si Ã¨ verificato un errore!");
 		}
 	};
 
@@ -71,7 +71,7 @@ http://www.dailygrind.it/livetweet
 		},
 		format_date : function(dt) {			
 			var m = new Array("GEN", "FEB", "MAR", "APR", "MAG", "GIU", "LUG", "AGO", "SET", "OTT", "NOV", "DIC");
-			var d = new Array("Domenica", "Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato");		
+			var d = new Array("Domenica", "LunedÃ¬", "MartedÃ¬", "MercoledÃ¬", "GiovedÃ¬", "VenerdÃ¬", "Sabato");		
 			return d[dt.getDay()]+ " " + dt.getDate() + " " + m[dt.getMonth()] + " " + dt.getFullYear();		
 		}
 	};
