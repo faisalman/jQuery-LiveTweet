@@ -6,11 +6,14 @@ jQuery LiveTweet is a jquery plugin that fetches your tweets from Twitter.
 
 h2. Usage
 
-@code@
+@
 <script src="jquery.js"></script>
 <script src="jquery.livetweet.js"></script>
 <script>
 $(document).ready(function() {
-	$("#your_element").livetweet();
+	$("#your_element").livetweet({
+		"username" : "twitter_user"
+	});
 });
 </script>
+@	
