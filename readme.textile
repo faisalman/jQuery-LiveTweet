@@ -1,3 +1,16 @@
 h1. jQuery LiveTweet documentation
 
-This is a test with some Textile _text_ (italics maybe?)
+h2. What it does
+
+jQuery LiveTweet is a jquery plugin that fetches your tweets from Twitter.
+
+h2. Usage
+
+@code@
+<script src="jquery.js"></script>
+<script src="jquery.livetweet.js"></script>
+<script>
+$(document).ready(function() {
+	$("#your_element").livetweet();
+});
+</script>
