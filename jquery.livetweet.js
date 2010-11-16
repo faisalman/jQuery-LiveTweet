@@ -52,8 +52,6 @@ https://github.com/sergiomartino/jQuery-LiveTweet
 					return $this.each(function() {
 						$(this).append(rt);
 					});	
-					
-					settings.after();
 				}
 			});							
 		
