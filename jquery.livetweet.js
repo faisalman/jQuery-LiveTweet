@@ -17,28 +17,26 @@ https://github.com/sergiomartino/jQuery-LiveTweet
 		'format_date' : function(d) {
 			return $.fn.livetweet('format_date', d)		
 		},
-		'error' : function(t) {
-			t.html("Si è verificato un errore!");
-		}
+		'error_text' : 'an error has occurred!'
 	};
 
 	var methods = {
 		init : function(options) {
 			var $this = this;			
 			if(options) $.extend(settings, options);
+				
 			
 			$.ajax({
-				beforeSend : $this.html("<span class=\"livetweet-loading\">"+settings.loading_text+"</span>"),
+				beforeSend : $this.html('<span class="livetweet-loading">'+settings.loading_text+'</span>'),
 				url: 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name='+settings.username,
 				type: 'GET',
-				dataType: 'jsonp',
+				dataType: 'jsonp',						
 				timeout: settings.timeout,
-				error: function(r,e) {										
-					$.fn.livetweet("remove_loading",$this);
-					settings.error();
+				error: function() {
+					$this.html('<span class="livetweet-error">'+settings.error+'</span>');
 				},
-				success: function(json){								
-					$.fn.livetweet("remove_loading",$this);
+				success: function(json){																		
+					$this.find(".livetweet-loading").remove();
 					sizer = json.length > settings.limit ? settings.limit : json.length;
 					rt = settings.html_before;
 					tweets = '';
@@ -54,9 +52,6 @@ https://github.com/sergiomartino/jQuery-LiveTweet
 			});							
 		
 		},
-		remove_loading: function(t) {
-			t.find(".livetweet-loading").remove();
-		},
 		format_links : function(t) {			
 			var rxp_url = /((ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?)/gi;
             var rxp_user = /[\@]+([A-Za-z0-9-_]+)/gi;
@@ -69,8 +64,8 @@ https://github.com/sergiomartino/jQuery-LiveTweet
 			return t;
 		},
 		format_date : function(dt) {			
-			var m = new Array("GEN", "FEB", "MAR", "APR", "MAG", "GIU", "LUG", "AGO", "SET", "OTT", "NOV", "DIC");
-			var d = new Array("Domenica", "Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato");		
+			var m = new Array('GEN', 'FEB', 'MAR', 'APR', 'MAG', 'GIU', 'LUG', 'AGO', 'SET', 'OTT', 'NOV', 'DIC');
+			var d = new Array('Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato');		
 			return d[dt.getDay()]+ " " + dt.getDate() + " " + m[dt.getMonth()] + " " + dt.getFullYear();		
 		}
 	};
@@ -81,7 +76,7 @@ https://github.com/sergiomartino/jQuery-LiveTweet
 		} else if(typeof method === 'object' || !method) {
 			return methods.init.apply(this, arguments);
 		} else {
-			$.error('Il metodo '+method+' non esiste su jQuery.livetweet');
+			$.error('Method '+method+' does not exist on jQuery.livetweet');
 		}    
 	};
 })(jQuery);

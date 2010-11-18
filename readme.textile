@@ -12,8 +12,8 @@ h2. How to use it
 <script src="jquery.livetweet.js"></script>
 <script>
 $(document).ready(function() {
-	$("#your_element").livetweet({
-		"username" : "twitter_user"
+	$('#your_element').livetweet({
+		'username' : 'twitter_user'
 	});
 });
 </script>
@@ -30,24 +30,22 @@ h2. Options
 * *html_tweets*: HTML pattern for tweets. Defaults to @<li>{text}<br>{date}</li>@.
 * *format_date*: Date formatting function. Defaults to a function I made for Italian dates.
 * *loading_text*: Text displayed on loading. Defaults to @loading...@.
-* *error*: Function executed on errors.
+* *error_text*: Text displayed on errors. Defaults to @an error has occurred!@.
 
 h2. Example
 
 <pre>
 <code>
 $("#your_element").livetweet({
-	"username" : "sergio_martino",
-	"html_before" : "These are my tweets:<br>",
-	"html_tweets" : "{date} | {text}<br>",
-	"html_after" : "<br>Ciao!",
-	"format_date" : function(my_date) {
-		return my_date.getDay()+"/"+my_date.getMonth()+"/"+my_date.getFullYear();
+	'username' : 'sergio_martino',
+	'html_before' : 'These are my tweets:<br>',
+	'html_tweets' : '{date} | {text}<br>',
+	'html_after' : '<br>Ciao!',
+	'format_date' : function(my_date) {
+		return my_date.getDay()+'/'+my_date.getMonth()+'/'+my_date.getFullYear();
 	},
-	"loading_text" : "ehi wait! I'm loading...",
-	"error" : function(element) {
-		element.html("An error has occurred!");
-	}
+	'loading_text' : 'ehi wait! I\'m loading...',
+	'error_text' : 'oooops...'
 });
 </code>
 </pre>
