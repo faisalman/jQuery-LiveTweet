@@ -22,15 +22,15 @@ $(document).ready(function() {
 
 h2. Options
 
-*username*: Your twitter username. Defaults to @jeresig@ (jQuery's creator).
-*limit*: Number of tweets returned. Defaults to 5.
-*timeout*: Request timeout. Defaults to 2000 (2 seconds).
-*html_before*: HTML to be rendered before tweets' loop. Defaults to @<ul>@.
-*html_after*: HTML to be rendered after tweets' loop. Defaults to @</ul>@.
-*html_tweets*: HTML pattern for tweets. Defaults to @<li>{text}<br>{date}</li>@.
-*format_date*: Date formatting function. Defaults to a function I made for Italian dates.
-*before*: Function executed just before sending the ajax request. Defaults to an appended string: @<span class="livetweet-loading">loading...</span>"@.
-*error*: Function executed on errors.
+* *username*: Your twitter username. Defaults to @jeresig@ (jQuery's creator).
+* *limit*: Number of tweets returned. Defaults to 5.
+* *timeout*: Request timeout. Defaults to 2000 (2 seconds).
+* *html_before*: HTML to be rendered before tweets' loop. Defaults to @<ul>@.
+* *html_after*: HTML to be rendered after tweets' loop. Defaults to @</ul>@.
+* *html_tweets*: HTML pattern for tweets. Defaults to @<li>{text}<br>{date}</li>@.
+* *format_date*: Date formatting function. Defaults to a function I made for Italian dates.
+* *loading_text*: Text displayed on loading. Defaults to @loading...@.
+* *error*: Function executed on errors.
 
 h2. Example
 
@@ -44,9 +44,7 @@ $("#your_element").livetweet({
 	"format_date" : function(my_date) {
 		return my_date.getDay()+"/"+my_date.getMonth()+"/"+my_date.getFullYear();
 	},
-	"before" : function(element) {
-		element.html("<span class=\"livetweet-loading\">Waiting for tweets to come</span>");
-	},
+	"loading_text" : "ehi wait! I'm loading...",
 	"error" : function(element) {
 		element.html("An error has occurred!");
 	}

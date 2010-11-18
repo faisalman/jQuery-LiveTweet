@@ -1,5 +1,5 @@
 /* 
-JQUERY LIVETWEET 0.1
+JQUERY LIVETWEET 0.2
 by Sergio Martino
 http://www.dailygrind.it
 https://github.com/sergiomartino/jQuery-LiveTweet
@@ -13,11 +13,9 @@ https://github.com/sergiomartino/jQuery-LiveTweet
 		'html_before' : '<ul>',
 		'html_tweets' : '<li>{text}<br>{date}</li>',
 		'html_after' : '</ul>',
+		'loading_text' : 'loading...',
 		'format_date' : function(d) {
 			return $.fn.livetweet('format_date', d)		
-		},
-		'before' : function(t) {
-			t.html("<span class=\"livetweet-loading\">loading...</span>");
 		},
 		'error' : function(t) {
 			t.html("Si è verificato un errore!");
@@ -30,7 +28,7 @@ https://github.com/sergiomartino/jQuery-LiveTweet
 			if(options) $.extend(settings, options);
 			
 			$.ajax({
-				beforeSend : settings.before($this),
+				beforeSend : $this.html("<span class=\"livetweet-loading\">"+settings.loading_text+"</span>"),
 				url: 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name='+settings.username,
 				type: 'GET',
 				dataType: 'jsonp',
