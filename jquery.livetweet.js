@@ -1,5 +1,5 @@
 /* 
-JQUERY LIVETWEET 0.2
+JQUERY LIVETWEET 0.3
 by Sergio Martino
 http://www.dailygrind.it
 https://github.com/sergiomartino/jQuery-LiveTweet
@@ -27,7 +27,7 @@ https://github.com/sergiomartino/jQuery-LiveTweet
 				
 			
 			$.ajax({
-				beforeSend : $this.html('<span class="livetweet-loading">'+settings.loading_text+'</span>'),
+				beforeSend : function() {$this.html('<span class="livetweet-loading">'+settings.loading_text+'</span>');},					
 				url: 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name='+settings.username,
 				type: 'GET',
 				dataType: 'jsonp',						
@@ -42,7 +42,7 @@ https://github.com/sergiomartino/jQuery-LiveTweet
 					tweets = '';
 					for(i=0;i<sizer;i++) {							
 						text = settings.html_tweets.replace('{text}', $.fn.livetweet('format_links', json[i].text));																								
-						tweets += text.replace('{date}', settings.format_date(new Date(Date.parse(new Date(Date.parse(json[i].created_at.replace(/(\+\S+) (.*)/, '$2 $1')))))));
+						tweets += text.replace('{date}', settings.format_date(new Date(Date.parse(json[i].created_at.replace(/(\+\S+) (.*)/, '$2 $1')))));
 					}
 					rt += tweets+settings.html_after;					
 					return $this.each(function() {
