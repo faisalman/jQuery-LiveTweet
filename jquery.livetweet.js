@@ -19,13 +19,15 @@ https://github.com/sergiomartino/jQuery-LiveTweet
 		},
 		'error_text' : 'an error has occurred!'
 	};
+	
+	var m = new Array('JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC');
+	var d = new Array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
 
 	var methods = {
 		init : function(options) {
 			var $this = this;			
 			if(options) $.extend(settings, options);
-				
-			
+							
 			$.ajax({
 				beforeSend : function() {$this.html('<span class="livetweet-loading">'+settings.loading_text+'</span>');},					
 				url: 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name='+settings.username,
@@ -64,8 +66,6 @@ https://github.com/sergiomartino/jQuery-LiveTweet
 			return t;
 		},
 		format_date : function(dt) {			
-			var m = new Array('GEN', 'FEB', 'MAR', 'APR', 'MAG', 'GIU', 'LUG', 'AGO', 'SET', 'OTT', 'NOV', 'DIC');
-			var d = new Array('Domenica', 'Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato');		
 			return d[dt.getDay()]+ " " + dt.getDate() + " " + m[dt.getMonth()] + " " + dt.getFullYear();		
 		}
 	};

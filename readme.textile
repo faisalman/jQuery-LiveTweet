@@ -28,7 +28,7 @@ h2. Options
 * *html_before*: HTML to be rendered before tweets' loop. Defaults to @<ul>@.
 * *html_after*: HTML to be rendered after tweets' loop. Defaults to @</ul>@.
 * *html_tweets*: HTML pattern for tweets. Defaults to @<li>{text}<br>{date}</li>@.
-* *format_date*: Date formatting function. Defaults to a function I made for Italian dates.
+* *format_date*: Date formatting function. Defaults to a date like @Wednesday 12 March 2011@.
 * *loading_text*: Text displayed on loading. Defaults to @loading...@.
 * *error_text*: Text displayed on errors. Defaults to @an error has occurred!@.
 
@@ -40,8 +40,8 @@ $("#your_element").livetweet({
 	'username' : 'sergio_martino',
 	'html_before' : 'These are my tweets:<br>',
 	'html_tweets' : '{date} | {text}<br>',
-	'html_after' : '<br>Ciao!',
-	'format_date' : function(my_date) {
+	'html_after' : '<br>Hello!',
+	'format_date' : function(js_date_object) {
 		return my_date.getDay()+'/'+my_date.getMonth()+'/'+my_date.getFullYear();
 	},
 	'loading_text' : 'ehi wait! I\'m loading...',
