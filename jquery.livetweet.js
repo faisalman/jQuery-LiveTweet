@@ -57,11 +57,11 @@ https://github.com/sergiomartino/jQuery-LiveTweet
 		format_links : function(t) {			
 			var rxp_url = /((ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?)/gi;
             var rxp_user = /[\@]+([A-Za-z0-9-_]+)/gi;
-            var rxp_hash = / [\#]+([A-Za-z0-9-_]+)/gi;
+            var rxp_hash = /[\#]+([A-Za-z0-9-_]+)/gi;
 
 			t = t.replace(rxp_url,'<a target="_blank" href="$1">$1</a>');
 			t = t.replace(rxp_user,'<a target="_blank" href="http://twitter.com/$1">@$1</a>');
-			t = t.replace(rxp_hash,'<a target="_blank" href=""http://search.twitter.com/search?q=&tag=$1&lang=all">#$1</a>');
+			t = t.replace(rxp_hash,'<a target="_blank" href="http://search.twitter.com/search?q=&tag=$1&lang=all">#$1</a>');
 			
 			return t;
 		},
