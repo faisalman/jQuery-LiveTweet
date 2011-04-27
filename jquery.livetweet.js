@@ -37,7 +37,7 @@ https://github.com/sergiomartino/jQuery-LiveTweet
 				dataType: 'jsonp',						
 				timeout: settings.timeout,
 				error: function() {
-					$this.html('<span class="livetweet-error">'+settings.error+'</span>');
+					$this.html('<span class="livetweet-error">'+settings.error_text+'</span>');
 				},
 				success: function(json){																		
 					$this.find(".livetweet-loading").remove();
