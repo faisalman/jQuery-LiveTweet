@@ -32,7 +32,7 @@ https://github.com/sergiomartino/jQuery-LiveTweet
 							
 			$.ajax({
 				beforeSend : function() {$this.html('<span class="livetweet-loading">'+settings.loading_text+'</span>');},					
-				url: 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name='+settings.username,
+				url: 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name='+settings.username+'&count='+settings.limit,
 				type: 'GET',
 				dataType: 'jsonp',						
 				timeout: settings.timeout,
