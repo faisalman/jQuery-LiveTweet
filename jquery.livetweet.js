@@ -71,7 +71,7 @@ https://github.com/sergiomartino/jQuery-LiveTweet
 		},
 		relative_date : function(dt) {
 			time_span = ((new Date()).getTime() - dt.getTime())/1000;				
-			if(time_span < 60) return time_span + " " + rds[0];
+			if(time_span < 60) return Math.round(time_span) + " " + rds[0];
 			if(time_span >= 60 && time_span < 120) return rds[1];
 			if(time_span >= 120 && time_span < 3600) return Math.floor(time_span/60) + " " + rds[2];
 			if(time_span >= 3600 && time_span < 7200) return rds[3];
