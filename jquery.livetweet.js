@@ -1,5 +1,5 @@
 /* 
-JQUERY LIVETWEET 0.4
+JQUERY LIVETWEET 0.5
 by Sergio Martino
 http://www.dailygrind.it
 https://github.com/sergiomartino/jQuery-LiveTweet
@@ -12,32 +12,50 @@ https://github.com/sergiomartino/jQuery-LiveTweet
 		'timeout' : 2000,		
 		'html_before' : '<ul>',
 		'html_tweets' : '<li>{text}<br>{date}</li>',
-		'html_after' : '</ul>',
-		'loading_text' : 'loading...',
+		'html_after' : '</ul>',		
+		'lang' : 'en',
 		'use_relative_dates' : true,
 		'format_date' : function(d) {			
-			return (this.use_relative_dates) ? $.fn.livetweet('relative_date',d) : $.fn.livetweet('format_date', d);		
-		},
-		'error_text' : 'an error has occurred!'
+			return (this.use_relative_dates) ? $.fn.livetweet('relative_date',d) : $.fn.livetweet('format_date', d);
+		}		
 	};
 	
-	var m = new Array('JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC');
-	var d = new Array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
-	var rds = new Array('seconds ago', 'about 1 minute ago', 'minutes ago', 'about 1 hour ago', 'hours ago', 'about 1 day ago', 'days ago', 'long time ago');	
+	var loc = {
+		'en' : {
+			'months' : 'JAN,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC',
+			'days' : 'Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday',
+			'time_span' : 'seconds ago,about 1 minute ago,minutes ago,about 1 hour ago,hours ago,about 1 day ago,days ago,long time ago',
+			'error' : 'An error has occured!',
+			'loading' : 'Loading...'
+		},
+		'it' : {
+			'months' : 'GEN,FEB,MAR,APR,MAG,GIU,LUG,AGO,SET,OTT,NOV,DIC',
+			'days' : 'Domenica,Lunedì,Martedì,Mercoledì,Giovedì,Venerdì,Sabato',
+			'time_span' : 'secondi fa,circa 1 minuto fa,minuti fa,circa 1 ora fa,ore fa,circa 1 giorno fa,giorni fa,tempo fa',
+			'error' : 'Si è verificato un errore!',
+			'loading' : 'Caricamento...'
+		}	
+	};
+	
+	var _months, _days, _timespan;
 	
 	var methods = {
 		init : function(options) {
 			var $this = this;			
-			if(options) $.extend(settings, options);
-							
+			if(options) $.extend(settings, options);														
+			
+			_months = loc[settings.lang]['months'].split(',');
+			_days = loc[settings.lang]['days'].split(',');
+			_timespan = loc[settings.lang]['time_span'].split(',');				
+			
 			$.ajax({
-				beforeSend : function() {$this.html('<span class="livetweet-loading">'+settings.loading_text+'</span>');},					
+				beforeSend : function() {$this.html('<span class="livetweet-loading">'+loc[settings.lang]['loading']+'</span>');},
 				url: 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name='+settings.username+'&count='+settings.limit,
 				type: 'GET',
 				dataType: 'jsonp',						
 				timeout: settings.timeout,
 				error: function() {
-					$this.html('<span class="livetweet-error">'+settings.error_text+'</span>');
+					$this.html('<span class="livetweet-error">'+loc[settings.lang]['error']+'</span>');
 				},
 				success: function(json){																		
 					$this.find(".livetweet-loading").remove();
@@ -55,6 +73,7 @@ https://github.com/sergiomartino/jQuery-LiveTweet
 			});							
 		
 		},
+	
 		format_links : function(t) {			
 			var rxp_url = /((ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?)/gi;
             var rxp_user = /[\@]+([A-Za-z0-9-_]+)/gi;
@@ -66,20 +85,21 @@ https://github.com/sergiomartino/jQuery-LiveTweet
 			
 			return t;
 		},
+		
 		format_date : function(dt) {			
-			return d[dt.getDay()]+ " " + dt.getDate() + " " + m[dt.getMonth()] + " " + dt.getFullYear();		
+			return _days[dt.getDay()]+ ' ' + dt.getDate() + ' ' + _months[dt.getMonth()] + ' ' + dt.getFullYear();		
 		},
+		
 		relative_date : function(dt) {
-			time_span = ((new Date()).getTime() - dt.getTime())/1000;				
-			if(time_span < 60) return Math.round(time_span) + " " + rds[0];
-			if(time_span >= 60 && time_span < 120) return rds[1];
-			if(time_span >= 120 && time_span < 3600) return Math.floor(time_span/60) + " " + rds[2];
-			if(time_span >= 3600 && time_span < 7200) return rds[3];
-			if(time_span >= 7200 && time_span < 86400) return Math.floor(time_span/60/60) + " " + rds[4];
-			if(time_span >= 86400 && time_span < 172800) return rds[5];
-			if(time_span >= 172800 && time_span < 2592000) return Math.floor(time_span/60/60/24) + " " + rds[6];
-			if(time_span >= 2592000) return rds[7];
-			return "Ice age";
+			diff = ((new Date()).getTime() - dt.getTime())/1000;				
+			if(diff < 60) return Math.round(diff) + ' ' + _timespan[0];
+			if(diff >= 60 && diff < 120) return _timespan[1];
+			if(diff >= 120 && diff < 3600) return Math.floor(diff/60) + ' ' + _timespan[2];
+			if(diff >= 3600 && diff < 7200) return _timespan[3];
+			if(diff >= 7200 && diff < 86400) return Math.floor(diff/60/60) + ' ' + _timespan[4];
+			if(diff >= 86400 && diff < 172800) return _timespan[5];
+			if(diff >= 172800 && diff < 2592000) return Math.floor(diff/60/60/24) + ' ' + _timespan[6];
+			if(diff >= 2592000) return _timespan[7];
 		}		
 	};
 
