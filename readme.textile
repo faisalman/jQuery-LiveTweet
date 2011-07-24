@@ -2,7 +2,7 @@ h1. jQuery LiveTweet documentation
 
 h2. What it does
 
-jQuery LiveTweet is a jquery plugin that fetches your tweets from Twitter.
+jQuery LiveTweet is a jquery plugin that fetches tweets from Twitter.
 
 h2. How to use it
 
