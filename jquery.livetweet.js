@@ -30,9 +30,9 @@ https://github.com/sergiomartino/jQuery-LiveTweet
 		},
 		'it' : {
 			'months' : 'GEN,FEB,MAR,APR,MAG,GIU,LUG,AGO,SET,OTT,NOV,DIC',
-			'days' : 'Domenica,Lunedì,Martedì,Mercoledì,Giovedì,Venerdì,Sabato',
+			'days' : 'Domenica,LunedÃ¬,MartedÃ¬,MercoledÃ¬,GiovedÃ¬,VenerdÃ¬,Sabato',
 			'time_span' : 'secondi fa,circa 1 minuto fa,minuti fa,circa 1 ora fa,ore fa,circa 1 giorno fa,giorni fa,tempo fa',
-			'error' : 'Si è verificato un errore!',
+			'error' : 'Si Ã¨ verificato un errore!',
 			'loading' : 'Caricamento...'
 		}	
 	};
