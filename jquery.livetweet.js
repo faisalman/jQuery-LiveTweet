@@ -28,6 +28,13 @@ https://github.com/sergiomartino/jQuery-LiveTweet
 			'error' : 'An error has occured!',
 			'loading' : 'Loading...'
 		},
+		'id' : {
+			'months' : 'JAN,FEB,MAR,APR,MEI,JUN,JUL,AUG,SEP,OKT,NOV,DES',
+			'days' : 'Minggu,Senin,Selasa,Rabu,Kamis,Jumat,Sabtu',
+			'time_span' : 'detik lalu,sekitar 1 menit lalu,menit lalu,sekitar 1 jam lalu,jam lalu,sekitar 1 hari lalu,hari lalu,sejak lama',
+			'error' : 'Kesalahan telah terjadi!',
+			'loading' : 'Memuat...'
+		},
 		'it' : {
 			'months' : 'GEN,FEB,MAR,APR,MAG,GIU,LUG,AGO,SET,OTT,NOV,DIC',
 			'days' : 'Domenica,Lunedì,Martedì,Mercoledì,Giovedì,Venerdì,Sabato',
